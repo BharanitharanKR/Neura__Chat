@@ -1,0 +1,235 @@
+.sidebar {
+  min-height: 100vh;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #000000;
+  padding: 10px 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar .top {
+  margin-top: 15px;
+}
+
+.sidebar img {
+  width: 30px;
+}
+
+.sidebar .menu {
+  display: block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.sidebar .new-chat {
+  margin-top: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 15px;
+  background-color: #333333;
+  border-radius: 50px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 90%;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.sidebar.collapsed .new-chat {
+  width: fit-content;
+  padding: 10px;
+}
+
+.sidebar .recent {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 2s;
+  overflow-y: auto;
+  max-height: 50vh;
+  color: #ffffff;
+  padding: 0 5px;
+}
+
+.sidebar .recent-title {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: white;
+  text-align: left;
+}
+
+.sidebar .recent-entry {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 10px;
+  padding-right: 40px;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.sidebar .recent-entry:hover {
+  background-color: #333333;
+}
+
+.sidebar .bottom {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.sidebar .bottom-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 50px;
+  color: white;
+  justify-content: flex-start;
+}
+
+.sidebar .bottom-item:hover {
+  background-color: #333333;
+}
+
+/* Text content in sidebar */
+.sidebar p {
+  transition: opacity 0.2s ease;
+  color: white;
+  text-align: left;
+}
+
+.sidebar.collapsed p {
+  display: none;
+}
+
+/* Mobile menu that appears on small screens */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-toggle img {
+  width: 24px;
+  filter: invert(1);
+}
+
+/* Added plus icon container for mobile view */
+.plus-icon-container {
+  display: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #333333;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.plus-icon-container img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+
+/* Animation for the sidebar */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
+    padding: 20px; /* More padding for mobile */
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+    width: 280px; /* Wider sidebar on mobile */
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .plus-icon-container {
+    display: flex; /* Show plus icon on mobile */
+  }
+
+  /* Increased spacing for mobile elements */
+  .sidebar .recent-entry {
+    padding: 15px;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  .sidebar .bottom-item {
+    padding: 15px;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+    color: #ffffff;
+  }
+
+  .sidebar .new-chat {
+    width: 90%;
+    justify-content: flex-start;
+  }
+
+  /* Overlay when sidebar is open on mobile */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+}
